@@ -64,3 +64,7 @@ The last command just resets the scoreboard because we don't want it giving an e
 # Potential improvements
 - Use the Scoreboard to track how much HP to give. This can work around the cake bug by monitoring the player's HP and deducting the value of the scoreboard when health is given to the player.
   - That said Cake is the only food that really needs this. The food consuming animation is slow enough to not require it for any other food.
+
+# Credits
+* Credits to u/mingshi3_uiuc [on Reddit](http://redd.it/vv68n6) for the RNG implementation this datapack uses.
+  * rng_init and rng_perform use this implementation.
