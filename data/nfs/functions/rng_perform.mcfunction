@@ -1,3 +1,5 @@
+# RNG Perform
+# Credit: redd.it/vv68n6
 scoreboard players add RNGseed RNG_Variable 1
 execute store result score RNG RNG_Variable run time query gametime
 scoreboard players operation RNG RNG_Variable *= RNGseed RNG_Variable
