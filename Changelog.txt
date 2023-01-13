@@ -1,0 +1,26 @@
+Beta 1.0
+===========
+The Update That Added Everything
+
++ NFS now supports all food items! See below for the new items.
++ Raw Chicken can now poison you (30% chance)
++ Added RNG function to facilitate poison chance
+* Fixed Cooked Chicken restoring 10HP instead of 6HP
+* Golden Apple now gives HP faster
+* Increased Efficiency by loading init functions via load.json
+* Organized the code by version.
+- Removed commandBlockOutput gamerule from being disabled by default as it is not needed anymore
+! Cake still lets you eat it 7 times instead of 6.
+! Optimize Multiplayer.
+See the readme.md file for more information.
+
+ITEMS
++ Added Potatoes, Tropical Fish, Pufferfish, Beetroots, and Dried Kelp (1HP)
++ Added Spider Eyes, Poisonous Potatoes, Raw Salmon, Raw Mutton, Sweet Berries, and Glow Berries (2HP)
++ Added Rotten Flesh, which can poison you (80% chance)
++ Added Carrots and Raw Rabbit (3HP)
++ Added Enchanted Golden Apples and Chorus Fruit (4HP)
++ Added Baked Potatoes, Cooked Rabbit,  (5HP)
++ Added Golden Carrots, Cooked Salmon, Cooked Mutton, Beetroot Soup, Suspicious Stew, and Honey Bottles (6HP)
++ Added Pumpkin Pie (8HP)
++ Added Rabbit Stew (10HP)

@@ -1,0 +1,11 @@
+# Kills off foods not supported by NFS.
+kill @e[nbt={Item:{id:"minecraft:rabbit"}}]
+kill @e[nbt={Item:{id:"minecraft:cooked_rabbit"}}]
+kill @e[nbt={Item:{id:"minecraft:mutton"}}]
+kill @e[nbt={Item:{id:"minecraft:cooked_mutton"}}]
+kill @e[nbt={Item:{id:"minecraft:potato"}}]
+kill @e[nbt={Item:{id:"minecraft:poisonous_potato"}}]
+kill @e[nbt={Item:{id:"minecraft:beetroot"}}]
+kill @e[nbt={Item:{id:"minecraft:carrot"}}]
+kill @e[nbt={Item:{id:"minecraft:salmon"}}]
+kill @e[nbt={Item:{id:"minecraft:pufferfish"}}]

@@ -1,0 +1,1 @@
+scoreboard objectives add eat.gberry minecraft.used:glow_berries

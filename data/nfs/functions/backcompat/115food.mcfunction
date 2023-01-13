@@ -1,0 +1,1 @@
+scoreboard objectives add eat.honey minecraft.used:honey_bottle
