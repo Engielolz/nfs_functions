@@ -65,5 +65,3 @@ execute if entity @a[scores={eat.honey=1..}] run function nfs:food/115/honeybott
 execute if entity @a[scores={eat.gberry=1..}] run function nfs:food/117/glowberries
 
 function nfs:restorehp
-# Cake can only be eaten 6 times
-fill ~-4 ~-4 ~-4 ~4 ~4 ~4 air replace cake[bites=6]
