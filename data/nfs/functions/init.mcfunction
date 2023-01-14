@@ -2,6 +2,8 @@
 gamerule naturalRegeneration false
 scoreboard objectives add Hunger dummy
 scoreboard objectives add Chosen dummy
+scoreboard objectives add HPBuffer dummy
+scoreboard objectives add HPCooldown dummy
 
 # Init RNG
 function nfs:rng_init
