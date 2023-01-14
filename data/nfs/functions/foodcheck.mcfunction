@@ -63,5 +63,3 @@ execute if entity @a[scores={eat.honey=1..}] run function nfs:food/115/honeybott
 
 # 1.17
 execute if entity @a[scores={eat.gberry=1..}] run function nfs:food/117/glowberries
-
-function nfs:restorehp
