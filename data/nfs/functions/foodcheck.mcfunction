@@ -46,7 +46,7 @@ execute if entity @a[scores={eat.rrabt=1..}] run function nfs:food/modern/rawrab
 execute if entity @a[scores={eat.crabt=1..}] run function nfs:food/modern/cookedrabbit
 execute if entity @a[scores={eat.rstew=1..}] run function nfs:food/modern/rabbitstew
 
-# 1.19
+# 1.9
 execute if entity @a[scores={eat.chorus=1..}] run function nfs:food/modern/chorusfruit
 execute if entity @a[scores={eat.broot=1..}] run function nfs:food/modern/beetroot
 execute if entity @a[scores={eat.bsoup=1..}] run function nfs:food/modern/beetrootsoup
