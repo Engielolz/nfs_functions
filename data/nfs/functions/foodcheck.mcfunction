@@ -8,7 +8,7 @@ execute if entity @a[scores={eat.raw=1..}] run function nfs:food/default/rawpork
 execute if entity @a[scores={eat.apple=1..}] run function nfs:food/default/apple
 execute if entity @a[scores={eat.gapple=1..}] run function nfs:food/default/gapple-yukari
 execute if entity @a[scores={eat.rfish=1..}] run function nfs:food/default/fish
-execute if entity @a[scores={eat.cfish=1..}] run function nfs:food/default/cfish
+execute if entity @a[scores={eat.cfish=1..}] run function nfs:food/default/cookedcod
 execute if entity @a[scores={eat.cookie=1..}] run function nfs:food/default/cookie
 execute if entity @a[scores={eat.bread=1..}] run function nfs:food/default/bread
 execute if entity @a[scores={eat.stew=1..}] run function nfs:food/default/mstew
