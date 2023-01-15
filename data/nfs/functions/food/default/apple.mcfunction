@@ -1,4 +1,5 @@
 # Apple Function
-# For use with the Nostalgic Food system by Engielolz
-effect give @a[scores={eat.apple=1..}] minecraft:instant_health
+# For use with the Nostalgic Food System by Engielolz
+# Restores 4HP.
+scoreboard players add @a[scores={eat.apple=1..}] HPBuffer 4
 scoreboard players set @a[scores={eat.apple=1..}] eat.apple 0

@@ -16,20 +16,23 @@ Some non-vanilla servers like Paper might require you to enable it first with `/
 # Errata
 Important things to note:
 ## Health gain is not instantaneous in some cases
-Some items use Regeneration to give health instead of Instant Health. Instant precise health gain is not available in vanilla right now.
-If there is a mod that can interface via commands that can do just that, please let me know and I'll add support for it.
+Some items require Regeneration to give out the correct amount of health. Instant precise health gain is not available in vanilla right now.
+The new HP Buffer system attempts to mitigate this by using Instant Health instead of Regeneration if possible.
+
+If there is a mod that can interface via datapacks that can do just that, please let me know and I'll consider adding support for it.
+
 ## Effects disappear/return after NFS adjusts the hunger bar.
 The effects will disappear prior to 1.15.2-pre1 instead of returning.
 There is no way to enforce any specific behavior other than modding or updating Minecraft
 ## Running on Bedrock
 Bedrock edition does not have the scoreboard criteria necessary for NFS to work. However since everything is server-side, you can run a Java server and have Bedrock clients connect via Geyser. Do give that a try!
-## Incorrect HP values in the Combat Tests
-This won't be fixed until the changes appear in a non-experimental snapshot.
+## HP gain is slower in the Combat Snapshots
+This can't be fixed.
 
 # Known Issues
 
-- Cake can be eaten 7 times, restoring 3 HP more than in Beta 1.7
-- If some foods are eaten in rapid succession, NFS may not give enough health
+- NFS may not give enough health with sufficiently high HP buffer
+  - This is not possible in the vanilla configuration but may occur with the HP Buffer being set to a very high value.
 
 # How to add a new food
 NFS supports adding in custom foods, here's how to do that.
@@ -53,14 +56,11 @@ So Minecraft will execute `data\nfs\functions\food\mycustomfoodfolder\mycustomfo
 ## Make it give health
 We set up the scoreboard and the check, so now we must create the file that will actually give out health.
 So create `data\nfs\functions\food\mycustomfoodfolder\mycustomfood.mcfunction` (or whatever you named it) with these lines
-`effect give @a[scores={eat.mycustomfood=1..}] minecraft:instant_health`
+`scoreboard players add @a[scores={eat.mycustomfood=1..}] HPBuffer value`
 `scoreboard players set @a[scores={eat.mycustomfood=1..}] eat.mycustomfood 0`
-Note that depending on the food, you may need to adjust the effect. Play with effects until you find something that works to restore the correct amount of HP.
-The last command just resets the scoreboard because we don't want it giving an effect every tick.
+Change value above to the amount of HP to restore.
 
-# Potential improvements
-- Use the Scoreboard to track how much HP to give. This can work around the cake bug by monitoring the player's HP and deducting the value of the scoreboard when health is given to the player.
-  - That said Cake is the only food that really needs this. The food consuming animation is slow enough to not require it for any other food.
+The last command just resets the scoreboard because we don't want it giving an effect every tick.
 
 # Credits
 * Credits to u/mingshi3_uiuc [on Reddit](http://redd.it/vv68n6) for the RNG implementation this datapack uses.
