@@ -1,11 +1,7 @@
-Beta 1.1
+Beta 1.1.1
 ===========
 
-+ Migrated all items to use the HP Buffer
-+ Implemented HP Cooldown to work around problems with adding HP
-+ Added support for the Combat Snapshots
-  To enable, edit options.mcfunction
-+ Readded options.mcfunction as it has a purpose to exist now
-* Fixed foods (mainly Cake) not giving enough HP (in the default configuration)
-* Now removes cakes after being eaten six times (like pre-1.8)
-  To disable this behavior, edit options.mcfunctions
++ Players can now check the NFS version with /trigger NFSVersion
+* Made Multiplayer work correctly
+* Upgrading from NFS B1.1 or earlier: Scoreboard objective Chosen is no longer used.
+  It can be safely removed with scoreboard objectives remove Chosen

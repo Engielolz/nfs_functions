@@ -1,7 +1,10 @@
-scoreboard players set @r Chosen 1
-execute if entity @p[scores={Chosen=1..}] store result score @p[scores={Chosen=1..}] Hunger run data get entity @p[scores={Chosen=1..}] foodLevel
-# Fix NFS not working if this isn't set
-scoreboard players add @a HPCooldown 0
+# Manually managing this is for compatibility with 1.13
+execute as @a store result score @s Hunger run data get entity @s foodLevel
+
+# Only set up NFSVersion for players that don't have it enabled
+execute as @a unless score @s NFSVersion matches 0.. run scoreboard players enable @s NFSVersion
+
+execute as @a[scores={NFSVersion=1}] run function nfs:ver_check
+
 function nfs:foodcheck
 function nfs:options
-scoreboard players set @p[scores={Chosen=1..}] Chosen 0

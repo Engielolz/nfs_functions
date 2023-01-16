@@ -1,9 +1,9 @@
 # Nostalgic Food System Init function
 gamerule naturalRegeneration false
 scoreboard objectives add Hunger dummy
-scoreboard objectives add Chosen dummy
 scoreboard objectives add HPBuffer dummy
 scoreboard objectives add HPCooldown dummy
+scoreboard objectives add NFSVersion trigger
 
 # Init RNG
 function nfs:rng_init
@@ -72,3 +72,6 @@ function nfs:backcompat/117food
 
 # Custom food initialization
 function nfs:custom_init
+
+# Fix NFS not working if this isn't set
+scoreboard players add @a HPCooldown 0

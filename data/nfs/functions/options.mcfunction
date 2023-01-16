@@ -6,4 +6,4 @@ function nfs:restorehp
 
 # By default NFS will remove cakes with 6 bites taken out of them to match pre-1.8.
 # To disable this behavior, comment out the following line.
-execute at @p[scores={Chosen=1..}] run fill ~-5 ~-5 ~-5 ~5 ~5 ~5 air replace cake[bites=6]
+execute at @a run fill ~-5 ~-5 ~-5 ~5 ~5 ~5 air replace cake[bites=6]
