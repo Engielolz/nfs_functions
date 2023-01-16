@@ -11,7 +11,14 @@ If the server is already running, you need to type /reload after installing it.
 Some non-vanilla servers like Paper might require you to enable it first with `/datapack enable "file/nfs_functions"`
 
 # Usage
-- Just install the datapack and load it (if needed). Further configuration is not needed nor available at this time.
+- Just install the datapack and load it (if needed).
+
+## Options
+NFS currently has 2 settings that can be configured in the options.mcfunction file.
+* Combat Snapshot setting
+  * This setting is for Combat Snapshot 8c. When set, NFS will use health values that are correct for that version.
+* Overeaten Cake removal
+  * Starting in Minecraft 1.8, Cakes can be eaten 7 times instead of the previous 6. NFS by default removes Cakes with six bites to ensure that no more than 18 HP (how much Cake could restore in Beta 1.7.3) may be obtained from one Cake. Commenting out the line disables this behavior.
 
 # Errata
 Important things to note:
@@ -30,7 +37,6 @@ Bedrock edition does not have the scoreboard criteria necessary for NFS to work.
 This can't be fixed.
 
 # Known Issues
-
 - NFS may not give enough health with sufficiently high HP buffer
   - This is not possible in the vanilla configuration but may occur with the HP Buffer being set to a very high value.
 
