@@ -3,6 +3,7 @@ gamerule naturalRegeneration false
 scoreboard objectives add Hunger dummy
 scoreboard objectives add HPBuffer dummy
 scoreboard objectives add HPCooldown dummy
+scoreboard objectives add NFSVersion trigger
 
 # Init RNG
 function nfs:rng_init

@@ -1,7 +1,7 @@
-Beta 1.2
+Beta 1.1.1
 ===========
-Multiplayer fixes
 
-* Fix support for Multiplayer
++ Players can now check the NFS version with /trigger NFSVersion
+* Made Multiplayer work correctly
 * Upgrading from NFS B1.1 or earlier: Scoreboard objective Chosen is no longer used.
   It can be safely removed with scoreboard objectives remove Chosen
