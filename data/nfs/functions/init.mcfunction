@@ -72,6 +72,3 @@ function nfs:backcompat/117food
 
 # Custom food initialization
 function nfs:custom_init
-
-# Fix NFS not working if this isn't set
-scoreboard players add @a HPCooldown 0
