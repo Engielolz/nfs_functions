@@ -6,7 +6,7 @@ execute as @a unless score @s NFSVersion matches 0.. run scoreboard players enab
 execute as @a[scores={NFSVersion=1}] run function nfs:ver_check
 
 # Fix HPBuffer not working if this isn't set
-execute as @a unless score @s HPBuffer = @s HPBuffer run scoreboard players add @s HPBuffer 0
+execute as @a unless score @s HPCooldown = @s HPCooldown run scoreboard players add @s HPCooldown 0
 
 function nfs:foodcheck
 function nfs:options

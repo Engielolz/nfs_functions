@@ -1,4 +1,4 @@
-Beta 1.1.2
+Beta 1.1.2_01
 ===========
 
-* Fix HPCooldown not being set for new players, causing HPBuffer to not give out health
+* ACTUALLY Fix HPCooldown not being set for new players, causing HPBuffer to not give out health
