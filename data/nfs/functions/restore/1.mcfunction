@@ -1,3 +1,3 @@
-effect give @a[scores={HPBuffer=1..}] minecraft:regeneration 1 2
-scoreboard players add @a[scores={HPBuffer=1..}] HPCooldown 20
-scoreboard players remove @a[scores={HPBuffer=1..}] HPBuffer 1
+effect give @a[scores={NFS.HPBuffer=1..}] minecraft:regeneration 1 2
+scoreboard players add @a[scores={NFS.HPBuffer=1..}] NFS.HPCooldown 20
+scoreboard players remove @a[scores={NFS.HPBuffer=1..}] NFS.HPBuffer 1

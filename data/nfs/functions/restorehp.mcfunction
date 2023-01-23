@@ -1,7 +1,7 @@
-execute if entity @a[scores={HPBuffer=8..,HPCooldown=0}] run function nfs:restore/8
-execute if entity @a[scores={HPBuffer=4..,HPCooldown=0}] run function nfs:restore/4
-execute if entity @a[scores={HPBuffer=3..,HPCooldown=0}] run function nfs:restore/3
+execute if entity @a[scores={NFS.HPBuffer=8..,NFS.HPCooldown=0}] run function nfs:restore/8
+execute if entity @a[scores={NFS.HPBuffer=4..,NFS.HPCooldown=0}] run function nfs:restore/4
+execute if entity @a[scores={NFS.HPBuffer=3..,NFS.HPCooldown=0}] run function nfs:restore/3
 
-execute if entity @a[scores={HPBuffer=1..,HPCooldown=0}] run function nfs:restore/1
+execute if entity @a[scores={NFS.HPBuffer=1..,NFS.HPCooldown=0}] run function nfs:restore/1
 
-scoreboard players remove @a[scores={HPCooldown=1..}] HPCooldown 1
+scoreboard players remove @a[scores={NFS.HPCooldown=1..}] NFS.HPCooldown 1

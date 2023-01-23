@@ -1,14 +1,24 @@
 # Nostalgic Food System Init function
 gamerule naturalRegeneration false
-scoreboard objectives add Hunger dummy
-scoreboard objectives add HPBuffer dummy
-scoreboard objectives add HPCooldown dummy
-scoreboard objectives add NFSVersion trigger
+scoreboard objectives add NFS.Hunger dummy "Hunger"
+scoreboard objectives add NFS.HPBuffer dummy "HP Buffer"
+scoreboard objectives add NFS.HPCooldown dummy "HP Cooldown"
+scoreboard objectives add NFS.Version trigger
 
 # Init RNG
 function nfs:rng_init
 
 # Food prior to Beta 1.8
+# scoreboard objectives add NFS.eat.porkchop minecraft.used:minecraft.porkchop
+# scoreboard objectives add NFS.eat.cookedporkchop minecraft.used:minecraft.cooked_porkchop
+# scoreboard objectives add NFS.eat.apple minecraft.used:minecraft.apple
+# scoreboard objectives add NFS.eat.golden_apple minecraft.used:minecraft.golden_apple
+# scoreboard objectives add NFS.eat.cod minecraft.used:minecraft.cod
+# scoreboard objectives add NFS.eat.tropical_fish minecraft.used:minecraft.cooked_cod
+# scoreboard objectives add NFS.eat.cookie minecraft.used:minecraft.cookie
+# scoreboard objectives add NFS.eat.bread minecraft.used:minecraft.bread
+# scoreboard objectives add NFS.eat.mushroom_stew minecraft.used:minecraft.mushroom_stew
+# scoreboard objectives add NFS.eat.cake minecraft.custom:minecraft.eat_cake_slice
 scoreboard objectives add eat.raw minecraft.used:minecraft.porkchop
 scoreboard objectives add eat.cooked minecraft.used:minecraft.cooked_porkchop
 scoreboard objectives add eat.apple minecraft.used:minecraft.apple
