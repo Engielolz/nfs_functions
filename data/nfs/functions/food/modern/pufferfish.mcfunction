@@ -1,5 +1,5 @@
 # Pufferfish Function
 # For use with the Nostalgic Food System by Engielolz
 # Restores 1HP.
-scoreboard players add @a[scores={eat.pfish=1..}] NFS.HPBuffer 1
-scoreboard players set @a[scores={eat.pfish=1..}] eat.pfish 0
+scoreboard players add @a[scores={NFS.eat.pfish=1..}] NFS.HPBuffer 1
+scoreboard players set @a[scores={NFS.eat.pfish=1..}] NFS.eat.pfish 0

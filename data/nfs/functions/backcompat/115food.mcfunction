@@ -1,1 +1,1 @@
-scoreboard objectives add eat.honey minecraft.used:honey_bottle
+scoreboard objectives add NFS.eat.honey minecraft.used:honey_bottle

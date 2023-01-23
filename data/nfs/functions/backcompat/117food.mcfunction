@@ -1,1 +1,1 @@
-scoreboard objectives add eat.gberry minecraft.used:glow_berries
+scoreboard objectives add NFS.eat.gberry minecraft.used:glow_berries
