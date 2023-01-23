@@ -1,8 +1,9 @@
 # Nostalgic Food System Init function
 gamerule naturalRegeneration false
-scoreboard objectives add NFS.Hunger dummy "Hunger"
+scoreboard objectives add NFS.Hunger food "Hunger"
 scoreboard objectives add NFS.HPBuffer dummy "HP Buffer"
 scoreboard objectives add NFS.HPCooldown dummy "HP Cooldown"
+scoreboard objectives add NFS.gaveSat dummy "Gave Saturation"
 scoreboard objectives add NFS.Version trigger
 
 # Init RNG
