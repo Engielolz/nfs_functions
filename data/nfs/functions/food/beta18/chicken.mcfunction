@@ -1,7 +1,7 @@
 # (Raw) Chicken Function
 # For use with the Nostalgic Food system by Engielolz
 # Restore 2HP.
-scoreboard players add @a[scores={eat.rchk=1..}] HPBuffer 2
+scoreboard players add @a[scores={eat.rchk=1..}] NFS.HPBuffer 2
 # Remove Hunger from the player if the Chicken gave them it.
 effect clear @a[scores={eat.rchk=1..}] minecraft:hunger
 # Do RNG. 30% chance to poison them.
