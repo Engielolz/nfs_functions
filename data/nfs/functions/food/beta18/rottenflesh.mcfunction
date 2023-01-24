@@ -4,5 +4,5 @@
 scoreboard players add @a[scores={NFS.eat.rflesh=1..}] NFS.HPBuffer 4
 effect clear @a[scores={NFS.eat.rflesh=1..}] minecraft:hunger
 function nfs:rng_perform
-execute if score RNG RNG_Variable matches 0..7 run effect give @a[scores={NFS.eat.rflesh=1..}] minecraft:poison 30 0
+execute if score RNG NFS.RNG.Var matches 0..7 run effect give @a[scores={NFS.eat.rflesh=1..}] minecraft:poison 30 0
 scoreboard players set @a[scores={NFS.eat.rflesh=1..}] NFS.eat.rflesh 0

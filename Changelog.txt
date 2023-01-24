@@ -1,6 +1,6 @@
 Beta 1.2
 ===========
 
-* Added NFS Prefix to all scoreboard objectives (mostly done)
-* Updated names of food related objectives to be more descriptive (partially done)
-* Hunger objective now uses foodLevel Criterion (do this next)
+* Added NFS Prefix to all scoreboard objectives
+* Hunger objective now uses food Criterion
+* Fix carrots not working

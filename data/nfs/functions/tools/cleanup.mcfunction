@@ -2,9 +2,10 @@
 scoreboard objectives remove Hunger
 # NFS Beta 1.1 and earlier
 scoreboard objectives remove Chosen
-# NFS Beta 1.1.2_01 and earlier
+# NFS Beta 1.1, 1.1.1, 1.1.2(_01)
 scoreboard objectives remove HPBuffer
 scoreboard objectives remove HPCooldown
+# NFS Beta 1.1.1, 1.1.2(_01)
 scoreboard objectives remove NFSVersion
 # Cleanup old food names
 scoreboard objectives remove eat.raw
@@ -44,3 +45,6 @@ scoreboard objectives remove eat.chorus
 scoreboard objectives remove eat.broot
 scoreboard objectives remove eat.bsoup
 scoreboard objectives remove eat.kelp
+# Old RNG
+scoreboard objectives remove RNG_Variable
+scoreboard objectives remove RNG_Constant
