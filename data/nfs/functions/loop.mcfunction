@@ -1,12 +1,18 @@
-# Manually managing this is for compatibility with 1.13
-execute as @a store result score @s Hunger run data get entity @s foodLevel
+# Wake up the Scoreboard
+execute as @a unless score @s NFS.Hunger = @s NFS.Hunger run effect give @s minecraft:hunger 1 255
+# If NFS.gaveSat is unset, set it to 0
+execute as @a unless score @s NFS.gaveSat = @s NFS.gaveSat run scoreboard players set @s NFS.gaveSat 0
+
+# Only give out Saturation once
+execute as @a[scores={NFS.gaveSat=0}] unless score @s NFS.Hunger = @s NFS.Hunger run effect give @s minecraft:saturation 1 0
+execute as @a[scores={NFS.gaveSat=0}] unless score @s NFS.Hunger = @s NFS.Hunger run scoreboard players set @s NFS.gaveSat 1
 
 # Only set up NFSVersion for players that don't have it enabled
-execute as @a unless score @s NFSVersion matches 0.. run scoreboard players enable @s NFSVersion
-execute as @a[scores={NFSVersion=1}] run function nfs:ver_check
+execute as @a unless score @s NFS.Version matches 0.. run scoreboard players enable @s NFS.Version
+execute as @a[scores={NFS.Version=1}] run function nfs:ver_check
 
 # Fix HPBuffer not working if this isn't set
-execute as @a unless score @s HPCooldown = @s HPCooldown run scoreboard players add @s HPCooldown 0
+execute as @a unless score @s NFS.HPCooldown = @s NFS.HPCooldown run scoreboard players add @s NFS.HPCooldown 0
 
 function nfs:foodcheck
 function nfs:options

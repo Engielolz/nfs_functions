@@ -1,3 +1,3 @@
-tellraw @s [{"text":"Nostalgic Food System Datapack for Minecraft 1.13+\n"},{"text":"Beta 1.1.2_01\n","hoverEvent":{"action":"show_text","value":"Download this version"},"clickEvent":{"action":"open_url","value":"https://github.com/Engielolz/nfs_functions/releases/tag/b1.1.2_01"}},{"text":"2018-2023 "},{"text":"Engielolz","clickEvent":{"action":"open_url","value":"https://www.github.com/Engielolz/nfs_functions"},"hoverEvent":{"action":"show_text","value":"Click to visit GitHub Repository"}}]
-scoreboard players set @s NFSVersion 0
-scoreboard players enable @s NFSVersion
+tellraw @s [{"text":"Nostalgic Food System Datapack for Minecraft 1.13+\n"},{"text":"Beta 1.2\n","hoverEvent":{"action":"show_text","value":"Click to download this version"},"clickEvent":{"action":"open_url","value":"https://github.com/Engielolz/nfs_functions/releases/tag/b1.2.0"}},{"text":"2018-2023 "},{"text":"Engielolz","clickEvent":{"action":"open_url","value":"https://www.github.com/Engielolz/nfs_functions"},"hoverEvent":{"action":"show_text","value":"Click to visit GitHub Repository"}}]
+scoreboard players set @s NFS.Version 0
+scoreboard players enable @s NFS.Version

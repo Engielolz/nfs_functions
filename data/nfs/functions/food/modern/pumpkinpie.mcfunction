@@ -1,5 +1,5 @@
 # Pumpkin Pie Function
 # For use with the Nostalgic Food System by Engielolz
 # Restores 8HP.
-scoreboard players add @a[scores={eat.ppie=1..}] HPBuffer 8
-scoreboard players set @a[scores={eat.ppie=1..}] eat.ppie 0
+scoreboard players add @a[scores={NFS.eat.ppie=1..}] NFS.HPBuffer 8
+scoreboard players set @a[scores={NFS.eat.ppie=1..}] NFS.eat.ppie 0
