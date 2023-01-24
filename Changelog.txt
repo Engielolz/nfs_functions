@@ -3,4 +3,5 @@ Beta 1.2
 
 * Added NFS Prefix to all scoreboard objectives
 * Hunger objective now uses food Criterion
-* Fix carrots not working
+* Fix carrots not restoring health
+* Fix RNG returning negative values on 1.13.0, causing poison chances to be incorrect
