@@ -48,3 +48,6 @@ scoreboard objectives remove eat.kelp
 # Old RNG
 scoreboard objectives remove RNG_Variable
 scoreboard objectives remove RNG_Constant
+# Old RNG, Part 2
+scoreboard objectives remove NFS.RNG.Const
+scoreboard objectives remove NFS.RNG.Var
