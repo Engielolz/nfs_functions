@@ -72,7 +72,3 @@ So create `data\nfs\functions\food\mycustomfoodfolder\mycustomfood.mcfunction` (
 Change value above to the amount of HP to restore.
 
 The last command just resets the scoreboard because we don't want it giving an effect every tick.
-
-# Credits
-* Credits to u/mingshi3_uiuc [on Reddit](http://redd.it/vv68n6) for the RNG implementation this datapack uses.
-  * rng_init and rng_perform are the functions that use this implementation.
