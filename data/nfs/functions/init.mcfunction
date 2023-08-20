@@ -5,6 +5,11 @@ scoreboard objectives add NFS.HPBuffer dummy "HP Buffer"
 scoreboard objectives add NFS.HPCooldown dummy "HP Cooldown"
 scoreboard objectives add NFS.gaveSat dummy "Gave Saturation"
 scoreboard objectives add NFS.Version trigger
+scoreboard objectives add NFS.Options dummy "NFS Options"
+
+# Default options
+execute unless score combatSnapshot NFS.Options = combatSnapshot NFS.Options run scoreboard players set combatSnapshot NFS.Options 0
+execute unless score overeatenCakes NFS.Options = overeatenCakes NFS.Options run scoreboard players set overeatenCakes NFS.Options 1
 
 # Init RNG
 function nfs:rng_init
