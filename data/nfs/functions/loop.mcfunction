@@ -15,4 +15,9 @@ execute as @a[scores={NFS.Version=1}] run function nfs:ver_check
 execute as @a unless score @s NFS.HPCooldown = @s NFS.HPCooldown run scoreboard players add @s NFS.HPCooldown 0
 
 function nfs:foodcheck
+
+# We do this after foodcheck so it works
+execute as @a run scoreboard players operation @s NFS.LastHunger = @s NFS.Hunger
+execute if score vulnFoodCooldown NFS.Options matches 1 as @a run scoreboard players remove @s[scores={NFS.vulnCooldown=1..}] NFS.vulnCooldown 1
+
 function nfs:options

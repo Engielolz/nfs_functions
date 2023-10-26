@@ -14,11 +14,13 @@ Some non-vanilla servers like Paper might require you to enable it first with `/
 - Just install the datapack and load it (if needed).
 
 ## Options
-NFS currently has 2 settings that can be configured in the options.mcfunction file.
+NFS currently has 3 settings that can be configured in the options.mcfunction file.
 * Combat Snapshot setting
   * This setting is for Combat Snapshot 8c. When set, NFS will use health values that are correct for that version.
 * Overeaten Cake removal
   * Starting in Minecraft 1.8, Cakes can be eaten 7 times instead of the previous 6. NFS by default removes Cakes with six bites to ensure that no more than 18 HP (how much Cake could restore in Beta 1.7.3) may be obtained from one Cake. Commenting out the line disables this behavior.
+* Vulnerable Food Cooldown
+  * This setting enforces a 32 tick cooldown after successfully eating a food item that is plantable. This further mitigates the plantable food exploit (#7) where it is possible to spam place the crop to gain health.
 
 # Errata
 Important things to note:
