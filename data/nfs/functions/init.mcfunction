@@ -13,9 +13,11 @@ scoreboard objectives add NFS.vulnCooldown dummy
 execute unless score combatSnapshot NFS.Options = combatSnapshot NFS.Options run scoreboard players set combatSnapshot NFS.Options 0
 execute unless score overeatenCakes NFS.Options = overeatenCakes NFS.Options run scoreboard players set overeatenCakes NFS.Options 1
 execute unless score vulnFoodCooldown NFS.Options = vulnFoodCooldown NFS.Options run scoreboard players set vulnFoodCooldown NFS.Options 1
+execute unless score useRandom NFS.Options = useRandom NFS.Options run scoreboard players set useRandom NFS.Options 0
 
 # Init RNG
-function nfs:rng_init
+scoreboard objectives add NFS.RNG.Var dummy
+execute if score useRandom NFS.Options matches 0 run function nfs:rng/legacy_init
 
 # Food prior to Beta 1.8
 scoreboard objectives add NFS.eat.raw minecraft.used:minecraft.porkchop

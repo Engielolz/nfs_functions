@@ -12,3 +12,7 @@ execute if score overeatenCakes NFS.Options matches 1 run execute at @a run fill
 # To further mitigate the plantable food exploit, a cooldown is set by default that
 # prevents the vulnerable food from working for 32 ticks (how long it takes to eat)
 # To disable this behavior, set vulnFoodCooldown to 0.
+
+# In Minecraft 23w31a (1.20.2), a new /random command was introduced.
+# Setting useRandom to 1 will use this command in place of the external RNG.
+# You should not set this value to 1 on older versions, or the RNG will break.

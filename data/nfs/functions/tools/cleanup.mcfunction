@@ -48,3 +48,5 @@ scoreboard objectives remove eat.kelp
 # Old RNG
 scoreboard objectives remove RNG_Variable
 scoreboard objectives remove RNG_Constant
+# Legacy RNG (if built-in RNG enabled)
+execute if score useRandom NFS.Options matches 1 run scoreboard objectives remove NFS.RNG.Const
