@@ -27,7 +27,7 @@ Note that options were set by editing the options.mcfunction file in older (pre-
   * This setting enforces a 32 tick cooldown after successfully eating a food item that is plantable. This further mitigates the plantable food exploit (#7) where it is possible to spam place the crop to gain health.
 * Use /random (`useRandom`)
   * When enabled, this uses Minecraft's built-in RNG found in 23w31a.
-  * Requires 23w31a (1.20.1) or higher.
+  * Requires 23w31a (1.20.2) or higher.
 
 ## Q&A I think
 ### Why isn't health gain instant?
