@@ -20,4 +20,9 @@ function nfs:foodcheck
 execute as @a run scoreboard players operation @s NFS.LastHunger = @s NFS.Hunger
 execute if score vulnFoodCooldown NFS.Options matches 1 as @a run scoreboard players remove @s[scores={NFS.vulnCooldown=1..}] NFS.vulnCooldown 1
 
-function nfs:options
+# Combat Snapshot setting
+execute if score combatSnapshot NFS.Options matches 1 run function nfs:restorehp-cs
+execute if score combatSnapshot NFS.Options matches 0 run function nfs:restorehp
+
+# Remove overeaten cakes if enabled
+execute if score overeatenCakes NFS.Options matches 1 run execute at @a run fill ~-5 ~-5 ~-5 ~5 ~5 ~5 air replace cake[bites=6]
