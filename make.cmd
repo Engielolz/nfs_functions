@@ -21,7 +21,7 @@ call :makepack 4
 set description=
 :: make food data
 popd
-nfstool food.inf 
+tools\nfstool food.inf 
 :: done
 goto eof
 
