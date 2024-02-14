@@ -1,6 +1,6 @@
 Signature=NFSTOOL
 last=41
-dir=build\data\nfs\functions\food
+dir=build/data/nfs/functions/food
 f1name=Apple
 f1fp=default
 f1fn=apple

@@ -1,7 +1,7 @@
 @echo off
 pushd %~dp0
 :: cleanup
-rmdir /s /q build
+rmdir /s /q build 2>nul
 mkdir build\data
 cd build\data
 :: folder structure
@@ -27,21 +27,25 @@ goto eof
 
 :makejson
 REM %1 = function %2 = file location
-echo {>%2
-echo "values": [>>%2
-echo "%1">>%2
-echo ]>>%2
-echo }>>%2
+>%2 (
+echo {
+echo "values": [
+echo "%1"
+echo ]
+echo }
+)
 exit /b 0
 
 :makepack
 REM %1 = format, set %description% to what you want
-echo {>pack.mcmeta
-echo       "pack": {>>pack.mcmeta
-echo           "pack_format": %1,>>pack.mcmeta
-echo           "description": "%description%">>pack.mcmeta
-echo       }>>pack.mcmeta
-echo   }>>pack.mcmeta
+>pack.mcmeta (
+echo {
+echo       "pack": {
+echo           "pack_format": %1,
+echo           "description": "%description%"
+echo       }
+echo   }
+)
 exit /b 0
 
 :eof

@@ -1,0 +1,2 @@
+*.sh text eol=lf
+*.inf text eol=crlf

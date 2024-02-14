@@ -1,5 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
+if exist "%1" set filename=%1 && goto load
 set /p filename=INF file:
 if exist "%filename%" goto load
 echo Signature=NFSTOOL>"%filename%"
@@ -10,6 +11,7 @@ goto newinit
 
 :load
 for /f "tokens=* delims= " %%a in (%filename%) do set %%a
+if not "%Signature%" == "NFSTOOL" goto badsignature
 set current=1
 goto menu
 
@@ -184,4 +186,14 @@ echo Go back and save if you want to keep your changes^^!
 echo Exit?
 choice /c:yn
 if %errorlevel% == 2 goto menu
+exit /b
+
+:error
+echo Failed to create the file %filename%...
+pause
+exit /b
+
+:badsignature
+echo Bad signature - %Signature%
+pause
 exit /b
