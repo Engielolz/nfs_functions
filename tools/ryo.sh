@@ -110,5 +110,7 @@ do
    
    # convert to DOS format (to be safe)
    sed -i -e 's/$'"/`echo \\\r`/" $dir/${!filepath}/${!filename}.mcfunction
+   # macOS Fix
+   rm $dir/${!filepath}/${!filename}.mcfunction-e 2>/dev/null
 done
 exit 0

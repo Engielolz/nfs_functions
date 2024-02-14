@@ -5,10 +5,12 @@ if ! [ -f ./functions/restorehp.mcfunction ]; then echo "This must be run in the
 function makejson () {
    printf '{"values": ["%s"]}\n' "$1">$2
    sed -i -e 's/$'"/`echo \\\r`/" $2
+   rm $2-e 2>/dev/null
 }
 function makepack () {
    printf '{"pack": {"pack_format": %s, "description": "%s"}}\n' "$1" "$2">pack.mcmeta
    sed -i -e 's/$'"/`echo \\\r`/" pack.mcmeta
+   rm pack.mcmeta-e 2>/dev/null
 }
 # cleanup
 rm -rf ./build 2>/dev/null
