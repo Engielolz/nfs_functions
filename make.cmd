@@ -27,12 +27,12 @@ goto eof
 
 :makejson
 REM %1 = function %2 = file location
-echo {"values": ["%1"]} >%2
+echo {"values": ["%1"]}>%2
 exit /b 0
 
 :makepack
 REM %1 = format, set %description% to what you want
-echo {"pack": {"pack_format": %1, "description": "%description%"}} >pack.mcmeta
+echo {"pack": {"pack_format": %1, "description": "%description%"}}>pack.mcmeta
 exit /b 0
 
 :eof

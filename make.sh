@@ -3,11 +3,11 @@
 if ! [ -f ./functions/restorehp.mcfunction ]; then echo "This must be run in the same directory as the script"; exit 1; fi
 # functions
 function makejson () {
-   printf '{"values": ["%s"]}' "$1">$2
+   printf '{"values": ["%s"]}\n' "$1">$2
    sed -i -e 's/$'"/`echo \\\r`/" $2
 }
 function makepack () {
-   printf '{"pack": {"pack_format": %s, "description": "%s"}}' "$1" "$2">pack.mcmeta
+   printf '{"pack": {"pack_format": %s, "description": "%s"}}\n' "$1" "$2">pack.mcmeta
    sed -i -e 's/$'"/`echo \\\r`/" pack.mcmeta
 }
 # cleanup
