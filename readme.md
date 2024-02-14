@@ -5,17 +5,24 @@ Nostalgic Food System (NFS) tries to make food items behave like they do prior t
 
 NFS should function on Minecraft 1.13, although 1.13.1 and above is recommended. Some function trickery lets NFS support food introduced in newer Minecraft versions without breaking compatibility with older versions.
 
+## Building
+
+> This is only necessary if you are working with the "source code" instead of the "precompiled" zip file
+
+Download and extract the "source code" and run either make.cmd or make.sh, depending on your OS. The `build` folder is the "compiled" code that you place in the datapacks folder.
+
 ## Installation
 
 To install, place the folder or zip in the datapacks folder. Once it loads it will begin functioning immediately.
-If the server is already running, you need to type /reload after installing it.
 
-Some non-vanilla servers like Paper might require you to enable it first with `/datapack enable "file/nfs_functions"`
+On a vanilla server, you need to type `/reload` if the server is already running.
+
+Some non-vanilla servers like Paper might require you to enable it instead with `/datapack enable "file/nfs_functions"`. If you edit the datapack, you will need to disable and then re-enable it for Paper to recognize your changes.
 
 ## Usage
 
-- Just install the datapack and load it (if needed).
-- You can then set options to customize NFS to your needs (see below)
+- Just install the datapack and load it (if required).
+- Set options to customize NFS to your needs (see below)
 
 ## Options
 
@@ -28,7 +35,7 @@ Note that options were set by editing the options.mcfunction file in older (pre-
 * Remove Overeaten Cakes (`overeatenCakes`)
   * Starting in Minecraft 1.8, Cakes can be eaten 7 times instead of the previous 6. NFS by default removes Cakes with six bites to ensure that no more than 18 HP (how much Cake could restore in Beta 1.7.3) may be obtained from one Cake.
 * Vulnerable Food Cooldown (`vulnFoodCooldown`)
-  * This setting enforces a 32 tick cooldown after successfully eating a food item that is plantable. This further mitigates the plantable food exploit (#7) where it is possible to spam place the crop to gain health.
+  * This setting enforces a 32 tick cooldown after successfully eating a food item that is plantable. If this is off, a malicious user could recover health by repeatedly placing some foods under certain curcumstances.
 * Use /random (`useRandom`)
   * When enabled, this uses Minecraft's built-in RNG found in 23w31a.
   * Requires 23w31a (1.20.2) or higher.
@@ -43,12 +50,6 @@ The HP Buffer system attempts to mitigate this by using Instant Health instead o
 
 If there is a mod that can interface via datapacks that can do just that, please let me know and I'll consider adding support for it.
 
-### Why do effects disappear/return after NFS adjusts the hunger bar?
-
-This has to do with how Minecraft handles potion effects.
-The effects will disappear prior to 1.15.2-pre1 instead of returning.
-This is a Minecraft limitation, and is no way to enforce any specific behavior other than modding or updating Minecraft.
-
 ### Can I use this with Bedrock Edition?
 
 Bedrock Edition does not have the scoreboard criteria necessary for NFS to work. However since everything is server-side, you can run a Java server and have Bedrock clients connect via Geyser.
@@ -58,6 +59,8 @@ Bedrock Edition does not have the scoreboard criteria necessary for NFS to work.
 The Instant Health effect was changed to restore 6HP instead of 4HP in Combat Snapshot 8c. As a result, Regeneration must be used more often, causing health gain to be slower.
 
 ## How to add a new food
+
+> Notice: This section is outdated due to the new build system
 
 NFS supports adding in custom foods, here's how to do that.
 
