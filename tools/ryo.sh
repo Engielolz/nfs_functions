@@ -1,5 +1,5 @@
 #!/bin/bash
-echo 'Code Name "Ryo" NFS INF Parser for UNIX-based Systems'
+echo 'Code Name "Ryo" NFS INF Parser for UNIX-like Systems'
 echo "Loading INF file $1"
 # Convert INF to Unix
 sed 's/\r$//' $1 >/tmp/ryo.tmp
@@ -28,8 +28,17 @@ if ! [ -d $dir ]; then
    mkdir -p $dir
 fi
 
-function writepre () {
-   echo "special pre stub; not implemented"
+function writeSpecial () {
+   for i in $(seq 1 $specialcount)
+   do
+      specialdata=$(echo f"$1"sp"$i"c)
+	  sheader2=$(echo f"$1"sp"$i"h)
+	  if [ "${!sheader2}" == "$2" ]
+	  then
+	     echo "Writing special code"
+	     echo "${!specialdata}">>$dir/${!filepath}/${!filename}.mcfunction
+	  fi
+   done
 }
 
 function writeNormal () {
@@ -46,8 +55,16 @@ function writeProtected () {
    echo "scoreboard players set @s[scores={NFS.eat.${!scoreboard}=1..}] NFS.eat.${!scoreboard} 0">>$dir/${!filepath}/${!filename}.mcfunction
 }
 
-function writepost () {
-   echo "special post stub; not implemented"
+function countEm() {
+   specialcount=1
+   while true
+   do
+   sheader2=$(echo f"$1"sp"$specialcount"h)
+   
+   # if not defined
+   if [ -z "${!sheader2}" ]; then specialcount=$((specialcount-1)); break; fi
+   specialcount=$((specialcount+1))
+   done
 }
 
 # This is the main loop
@@ -60,6 +77,8 @@ do
    hp=$(echo f"$i"hp)
    vulnerable=$(echo f"$i"vuln)
    specialheader=$(echo f"$i"sp1h)
+   specialcount=0
+   count=$i
    echo ""
    echo "Processing ${!friendly} ($dir/${!filepath}/${!filename}.mcfunction) ($i of $last)"
 
@@ -76,15 +95,16 @@ do
    echo "# Restores ${!hp}HP." >>$dir/${!filepath}/${!filename}.mcfunction
 
    # check pre-data
+   if ! [ -z "${!specialheader}" ]; then countEm $count; fi
    # if $specialheader is defined
-   if ! [ -z "${!specialheader}" ]; then writepre; fi
+   if ! [ "$specialcount" = "0" ]; then writeSpecial $count 0; fi
 
    # write the code for the function
    if [ "${!vulnerable}" == "0" ]; then writeNormal; else writeProtected; fi
    
    # check post-data
    # yes we do this twice, idc
-   if ! [ -z "${!specialheader}" ]; then writepost; fi
+   if ! [ "$specialcount" = "0" ]; then writeSpecial $count 1; fi
    
    # convert to DOS format (to be safe)
    sed -i -e 's/$'"/`echo \\\r`/" $dir/${!filepath}/${!filename}.mcfunction
