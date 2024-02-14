@@ -1,5 +1,7 @@
 #!/bin/bash
 echo 'Code Name "Ryo" NFS INF Parser for UNIX-like Systems'
+# Check if $1 is a file
+if [[ -z $1 ]]; then echo "To use this script, provide the path to the NFS INF you want to use."; exit 1; fi
 echo "Loading INF file $1"
 # Convert INF to Unix
 sed 's/\r$//' $1 >/tmp/ryo.tmp
@@ -84,7 +86,7 @@ do
 
    # create directory if it doesn't exist
    if ! [ -d $dir/${!filepath} ]; then
-      echo "Create directory"
+      echo "Creating directory"
       mkdir -p $dir/${!filepath}
    fi
 

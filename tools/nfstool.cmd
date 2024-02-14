@@ -1,7 +1,10 @@
 @echo off
+echo NFS Tool INF Parser for Windows
+if "%1" == "" goto usage
 setlocal enabledelayedexpansion
 for /f "tokens=* delims= " %%a in (%1) do set %%a
-if not defined last goto end
+if not "%Signature%" == "NFSTOOL" goto badsig
+if not defined last goto error
 set current=1
 if not exist !dir! (
 echo Creating directory !dir!
@@ -10,7 +13,7 @@ mkdir !dir!
 :work
 echo Processing !f%current%name! (!dir!\!f%current%fp!\!f%current%fn!.mcfunction) (!current! of !last!)
 if not exist "!dir!\!f%current%fp!" (
-echo Create directory
+echo Creating directory !dir!\!f%current%fp!
 mkdir "!dir!\!f%current%fp!"
 )
 echo Writing header
@@ -51,7 +54,7 @@ if "!f%current%sp%special%h!" == "" goto postresume
 goto postloop
 
 :isNotVuln
-echo Writing non-vulnerable protected code
+echo Writing normal code
 >>"!dir!\!f%current%fp!\!f%current%fn!.mcfunction" (
 echo scoreboard players add @s[scores={NFS.eat.!f%current%sc!=1..}] NFS.HPBuffer !f%current%hp!
 echo scoreboard players set @s[scores={NFS.eat.!f%current%sc!=1..}] NFS.eat.!f%current%sc! 0
@@ -59,7 +62,7 @@ echo scoreboard players set @s[scores={NFS.eat.!f%current%sc!=1..}] NFS.eat.!f%c
 exit /b
 
 :isVuln
-echo Writing vulnerable protected code
+echo Writing protected code
 >>"!dir!\!f%current%fp!\!f%current%fn!.mcfunction" (
 echo execute as @s[scores={NFS.vulnCooldown=1..}] if score vulnFoodCooldown NFS.Options matches 1 run scoreboard players set @s NFS.eat.!f%current%sc! 0
 echo execute as @s unless score @s NFS.Hunger = @s NFS.LastHunger run scoreboard players add @s[scores={NFS.eat.!f%current%sc!=1..}] NFS.HPBuffer !f%current%hp!
@@ -76,6 +79,18 @@ echo execute if score vulnFoodCooldown NFS.Options matches 1 run scoreboard play
 echo scoreboard players set @s[scores={NFS.eat.!f%current%sc!=1..}] NFS.eat.!f%current%sc! 0
 )
 exit /b
+
+:badsig
+echo Bad signature - %Signature%
+goto end
+
+:error
+echo last not defined
+goto end
+
+:usage
+echo To use this program, provide an INF file created using MakeINF as the first argument.
+goto end
 
 :end
 endlocal
