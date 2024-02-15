@@ -1,6 +1,6 @@
 #!/bin/bash
 # safety check
-if ! [ -f ./functions/restorehp.mcfunction ]; then echo "This must be run in the same directory as the script"; exit 1; fi
+if ! [ -f ./src/restorehp.mcfunction ]; then echo "This must be run in the same directory as the script"; exit 1; fi
 # functions
 function makejson () {
    printf '{"values": ["%s"]}\n' "$1">$2
@@ -19,7 +19,7 @@ mkdir -p build/data/minecraft/tags/functions
 cd build/data
 mkdir -p nfs/functions
 # copy data
-cp -r ../../functions/* nfs/functions
+cp -r ../../src/* nfs/functions
 touch nfs/functions/custom_init.mcfunction
 touch nfs/functions/custom_food.mcfunction
 # load tags

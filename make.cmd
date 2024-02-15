@@ -8,7 +8,7 @@ cd build\data
 mkdir minecraft\tags\functions
 mkdir nfs\functions
 :: copy data
-xcopy ..\..\functions\*.* nfs\functions /e
+xcopy ..\..\src\*.* nfs\functions /e
 copy nul nfs\functions\custom_init.mcfunction
 copy nul nfs\functions\custom_food.mcfunction
 :: write load tags
