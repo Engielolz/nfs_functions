@@ -83,7 +83,7 @@ do
 
    # create directory if it doesn't exist
    if ! [ -d $dir/${!filepath} ]; then
-      echo "Creating directory"
+      echo "Creating directory $dir"
       mkdir -p $dir/${!filepath}
    fi
 
