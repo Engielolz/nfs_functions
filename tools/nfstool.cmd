@@ -3,9 +3,12 @@ echo NFS Tool INF Parser for Windows
 if "%1" == "" goto usage
 setlocal enabledelayedexpansion
 for /f "tokens=* delims= " %%a in (%1) do set %%a
+echo INF File: %1
 if not "%Signature%" == "NFSTOOL" goto badsig
 if not defined last goto error
 set current=1
+:: Convert Unix path
+set "dir=%dir:/=\%"
 if not exist !dir! (
 echo Creating directory !dir!
 mkdir !dir!
@@ -22,38 +25,27 @@ echo # !f%current%name! Function
 echo # For use with the Nostalgic Food System by Engielolz
 echo # Restores !f%current%hp!HP.
 )
-if not "!f%current%sp1h!" == "" goto specialpre
-:preresume
-if "!f%current%vuln!" == "0" (call :isNotVuln) else (call :isVuln)
-if not "!f%current%sp1h!" == "" goto specialpost
-:postresume
+if not "!f%current%sp1h!" == "" call :writeSpecial 0
+:: write main code
+if "!f%current%vuln!" == "0" (call :writeNormal) else (call :writeProtected)
+if not "!f%current%sp1h!" == "" call :writeSpecial 1
+
 if !current! == !last! goto end
 set /a current=!current! + 1
 goto work
 
-:specialpre
+:writeSpecial
 set special=1
-:preloop
-if "!f%current%sp%special%h!" == "0" (
-echo Writing pre-code special data
+:specialLoop
+if "!f%current%sp%special%h!" == "%1" (
+echo Writing special data
 echo !f%current%sp%special%c!>>"!dir!\!f%current%fp!\!f%current%fn!.mcfunction"
 )
 set /a special=!special! + 1
-if "!f%current%sp%special%h!" == "" goto preresume
-goto preloop
+if "!f%current%sp%special%h!" == "" exit /b
+goto specialLoop
 
-:specialpost
-set special=1
-:postloop
-if "!f%current%sp%special%h!" == "1" (
-echo Writing post-code special data
-echo !f%current%sp%special%c!>>"!dir!\!f%current%fp!\!f%current%fn!.mcfunction"
-)
-set /a special=!special! + 1
-if "!f%current%sp%special%h!" == "" goto postresume
-goto postloop
-
-:isNotVuln
+:writeNormal
 echo Writing normal code
 >>"!dir!\!f%current%fp!\!f%current%fn!.mcfunction" (
 echo scoreboard players add @s[scores={NFS.eat.!f%current%sc!=1..}] NFS.HPBuffer !f%current%hp!
@@ -61,7 +53,7 @@ echo scoreboard players set @s[scores={NFS.eat.!f%current%sc!=1..}] NFS.eat.!f%c
 )
 exit /b
 
-:isVuln
+:writeProtected
 echo Writing protected code
 >>"!dir!\!f%current%fp!\!f%current%fn!.mcfunction" (
 echo execute as @s[scores={NFS.vulnCooldown=1..}] if score vulnFoodCooldown NFS.Options matches 1 run scoreboard players set @s NFS.eat.!f%current%sc! 0

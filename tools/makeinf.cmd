@@ -109,6 +109,8 @@ goto menu
 :editdir
 echo Currently the directory is %dir%
 set /p dir=Enter new directory: 
+:: convert to Unix-path
+set "dir=%dir:\=/%"
 goto menu
 
 :delete

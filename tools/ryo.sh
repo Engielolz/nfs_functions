@@ -22,8 +22,6 @@ fi
 if [ -z ${last+x} ]; then echo "last is not set"; exit 1; fi
 # there is no further error checking but WinRyo doesn't have it either
 
-echo "Got $last entries."
-
 # create Base directory
 if ! [ -d $dir ]; then
    echo "Creating directory $dir"
@@ -81,7 +79,6 @@ do
    specialheader=$(echo f"$i"sp1h)
    specialcount=0
    count=$i
-   echo ""
    echo "Processing ${!friendly} ($dir/${!filepath}/${!filename}.mcfunction) ($i of $last)"
 
    # create directory if it doesn't exist
@@ -96,9 +93,9 @@ do
    echo "# For use with the Nostalgic Food System by Engielolz" >>$dir/${!filepath}/${!filename}.mcfunction
    echo "# Restores ${!hp}HP." >>$dir/${!filepath}/${!filename}.mcfunction
 
-   # check pre-data
+   # count if $specialheader is defined
    if ! [ -z "${!specialheader}" ]; then countEm $count; fi
-   # if $specialheader is defined
+   # check pre-data
    if ! [ "$specialcount" = "0" ]; then writeSpecial $count 0; fi
 
    # write the code for the function
@@ -110,6 +107,7 @@ do
    
    # convert to DOS format (to be safe)
    sed -i -e 's/$'"/`echo \\\r`/" $dir/${!filepath}/${!filename}.mcfunction
+
    # macOS Fix
    rm $dir/${!filepath}/${!filename}.mcfunction-e 2>/dev/null
 done
