@@ -4,7 +4,7 @@ echo 'Code Name "Ryo" NFS INF Parser for UNIX-like Systems'
 if [[ -z $1 ]]; then echo "To use this script, provide the path to the NFS INF you want to use."; exit 1; fi
 echo "Loading INF file $1"
 # Convert INF to Unix
-sed 's/\r$//' $1 >/tmp/ryo.tmp
+$(dirname "$0")/convert.sh $1 -u /tmp/ryo.tmp
 # Read into memory
 while IFS= read -r line; do declare "$line"; done < /tmp/ryo.tmp
 # Clean up the mess
@@ -29,7 +29,7 @@ if ! [ -d $dir ]; then
 fi
 
 function writeSpecial () {
-   for i in $(seq 1 $specialcount)
+   for i in $($seqcmd $specialcount)
    do
       specialdata=$(echo f"$1"sp"$i"c)
 	  sheader2=$(echo f"$1"sp"$i"h)
@@ -59,16 +59,19 @@ function countEm() {
    specialcount=1
    while true
    do
-   sheader2=$(echo f"$1"sp"$specialcount"h)
-   
-   # if not defined
-   if [ -z "${!sheader2}" ]; then specialcount=$((specialcount-1)); break; fi
-   specialcount=$((specialcount+1))
+      sheader2=$(echo f"$1"sp"$specialcount"h)
+      # if not defined
+      if [ -z "${!sheader2}" ]; then specialcount=$((specialcount-1)); break; fi
+      specialcount=$((specialcount+1))
    done
 }
 
+# compatibility checks
+seqcmd="seq 1"
+if [ "$(uname -s)" == "Darwin" ]; then seqcmd=jot; fi
+
 # This is the main loop
-for i in $(seq 1 $last)
+for i in $($seqcmd $last)
 do
    friendly=$(echo f"$i"name)
    filepath=$(echo f"$i"fp)
@@ -100,15 +103,12 @@ do
 
    # write the code for the function
    if [ "${!vulnerable}" == "0" ]; then writeNormal; else writeProtected; fi
-   
+
    # check post-data
    # yes we do this twice, idc
    if ! [ "$specialcount" = "0" ]; then writeSpecial $count 1; fi
    
-   # convert to DOS format (to be safe)
-   sed -i -e 's/$'"/`echo \\\r`/" $dir/${!filepath}/${!filename}.mcfunction
-
-   # macOS Fix
-   rm $dir/${!filepath}/${!filename}.mcfunction-e 2>/dev/null
+   # convert to DOS format (for parity)
+   $(dirname "$0")/convert.sh $dir/${!filepath}/${!filename}.mcfunction -d -i
 done
 exit 0

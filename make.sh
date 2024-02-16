@@ -6,17 +6,13 @@ reltype=1
 tag=1.3
 nfsver=BuildSystem\ Test
 # functions
-function convert () {
-   sed -i -e 's/$'"/`echo \\\r`/" $1
-   rm $1-e 2>/dev/null
-}
 function makejson () {
    printf '{"values": ["%s"]}\n' "$1">$2
-   convert $2
+   ../../tools/convert.sh $2 -d -i
 }
 function makepack () {
    printf '{"pack": {"pack_format": %s, "description": "%s"}}\n' "$1" "$2">pack.mcmeta
-   convert pack.mcmeta
+   ../tools/convert.sh pack.mcmeta -d -i
 }
 # cleanup
 rm -rf ./build 2>/dev/null
@@ -37,7 +33,7 @@ printf 'tellraw @s [{"text":"Nostalgic Food System Datapack for Minecraft 1.13+\
 fi
 echo "scoreboard players set @s NFS.Version 0">>nfs/functions/ver_check.mcfunction
 echo "scoreboard players enable @s NFS.Version">>nfs/functions/ver_check.mcfunction
-convert nfs/functions/ver_check.mcfunction
+../../tools/convert.sh nfs/functions/ver_check.mcfunction -d -i
 # load tags
 makejson nfs:init minecraft/tags/functions/load.json
 makejson nfs:loop minecraft/tags/functions/tick.json
