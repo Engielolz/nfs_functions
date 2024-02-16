@@ -25,7 +25,7 @@ echo scoreboard players enable @s NFS.Version
 call :makejson nfs:init minecraft\tags\functions\load.json
 call :makejson nfs:loop minecraft\tags\functions\tick.json
 :: pack.mcmeta
-set description=Nostalgic Food System BuildSystem Test
+set description=Nostalgic Food System %nfsver%
 cd..
 call :makepack 4
 set description=

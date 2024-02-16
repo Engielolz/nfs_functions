@@ -11,7 +11,7 @@ function makejson () {
    ../../tools/convert.sh $2 -d -i
 }
 function makepack () {
-   printf '{"pack": {"pack_format": %s, "description": "%s"}}\n' "$1" "$2">pack.mcmeta
+   printf '{"pack": {"pack_format": %s, "description": "%s"}}\n' "$1" "Nostalgic Food System $nfsver">pack.mcmeta
    ../tools/convert.sh pack.mcmeta -d -i
 }
 # cleanup
@@ -39,7 +39,7 @@ makejson nfs:init minecraft/tags/functions/load.json
 makejson nfs:loop minecraft/tags/functions/tick.json
 # pack.mcmeta
 cd ..
-makepack 4 Nostalgic\ Food\ System\ BuildSystem\ Test
+makepack 4
 # call ryo and make the functions
 cd ..
 ./tools/ryo.sh food.inf
