@@ -37,7 +37,6 @@ case $4 in
       mode=0
       if [ "$(uname -s)" == "Darwin" ]; then mode=1; fi
 esac
-echo "format $format inplace $inplace mode $mode"
 
 function toDOS () {
    # use sed

@@ -82,11 +82,11 @@ do
    specialheader=$(echo f"$i"sp1h)
    specialcount=0
    count=$i
-   echo "Processing ${!friendly} ($dir/${!filepath}/${!filename}.mcfunction) ($i of $last)"
+   echo "Processing ${!friendly} ($dir/${!filepath}/${!filename}.mcfunction) ($count of $last)"
 
    # create directory if it doesn't exist
    if ! [ -d $dir/${!filepath} ]; then
-      echo "Creating directory $dir"
+      echo "Creating directory $dir/${!filepath}"
       mkdir -p $dir/${!filepath}
    fi
 
