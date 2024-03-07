@@ -6,7 +6,7 @@ echo Build for Windows
 call make>windows.log 2>&1
 move build win-build
 echo Build for Linux
-wsl ./make.sh>linux.log 2>&1
+wsl ./make.sh parity>linux.log 2>&1
 move build linux-build
 echo Moving files into place
 mkdir build

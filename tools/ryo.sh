@@ -23,9 +23,9 @@ if [ -z ${last+x} ]; then echo "last is not set"; exit 1; fi
 # there is no further error checking but WinRyo doesn't have it either
 
 # create Base directory
-if ! [ -d $dir ]; then
-   echo "Creating directory $dir"
-   mkdir -p $dir
+if ! [ -d $working/$dir ]; then
+   echo "Creating directory $working/$dir"
+   mkdir -p $working/$dir
 fi
 
 function writeSpecial () {
@@ -36,23 +36,23 @@ function writeSpecial () {
 	  if [ "${!sheader2}" == "$2" ]
 	  then
 	     echo "Writing special code"
-	     echo "${!specialdata}">>$dir/${!filepath}/${!filename}.mcfunction
+	     echo "${!specialdata}">>$working/$dir/${!filepath}/${!filename}.mcfunction
 	  fi
    done
 }
 
 function writeNormal () {
    echo "Writing normal code"
-   echo "scoreboard players add @s[scores={NFS.eat.${!scoreboard}=1..}] NFS.HPBuffer ${!hp}">>$dir/${!filepath}/${!filename}.mcfunction
-   echo "scoreboard players set @s[scores={NFS.eat.${!scoreboard}=1..}] NFS.eat.${!scoreboard} 0">>$dir/${!filepath}/${!filename}.mcfunction
+   echo "scoreboard players add @s[scores={NFS.eat.${!scoreboard}=1..}] NFS.HPBuffer ${!hp}">>$working/$dir/${!filepath}/${!filename}.mcfunction
+   echo "scoreboard players set @s[scores={NFS.eat.${!scoreboard}=1..}] NFS.eat.${!scoreboard} 0">>$working/$dir/${!filepath}/${!filename}.mcfunction
 }
 
 function writeProtected () {
    echo "Writing protected code"
-   echo "execute as @s[scores={NFS.vulnCooldown=1..}] if score vulnFoodCooldown NFS.Options matches 1 run scoreboard players set @s NFS.eat.${!scoreboard} 0">>$dir/${!filepath}/${!filename}.mcfunction
-   echo "execute as @s unless score @s NFS.Hunger = @s NFS.LastHunger run scoreboard players add @s[scores={NFS.eat.${!scoreboard}=1..}] NFS.HPBuffer ${!hp}">>$dir/${!filepath}/${!filename}.mcfunction
-   echo "execute if score vulnFoodCooldown NFS.Options matches 1 run scoreboard players set @s[scores={NFS.eat.${!scoreboard}=1..}] NFS.vulnCooldown 32">>$dir/${!filepath}/${!filename}.mcfunction
-   echo "scoreboard players set @s[scores={NFS.eat.${!scoreboard}=1..}] NFS.eat.${!scoreboard} 0">>$dir/${!filepath}/${!filename}.mcfunction
+   echo "execute as @s[scores={NFS.vulnCooldown=1..}] if score vulnFoodCooldown NFS.Options matches 1 run scoreboard players set @s NFS.eat.${!scoreboard} 0">>$working/$dir/${!filepath}/${!filename}.mcfunction
+   echo "execute as @s unless score @s NFS.Hunger = @s NFS.LastHunger run scoreboard players add @s[scores={NFS.eat.${!scoreboard}=1..}] NFS.HPBuffer ${!hp}">>$working/$dir/${!filepath}/${!filename}.mcfunction
+   echo "execute if score vulnFoodCooldown NFS.Options matches 1 run scoreboard players set @s[scores={NFS.eat.${!scoreboard}=1..}] NFS.vulnCooldown 32">>$working/$dir/${!filepath}/${!filename}.mcfunction
+   echo "scoreboard players set @s[scores={NFS.eat.${!scoreboard}=1..}] NFS.eat.${!scoreboard} 0">>$working/$dir/${!filepath}/${!filename}.mcfunction
 }
 
 function countEm() {
@@ -82,19 +82,19 @@ do
    specialheader=$(echo f"$i"sp1h)
    specialcount=0
    count=$i
-   echo "Processing ${!friendly} ($dir/${!filepath}/${!filename}.mcfunction) ($count of $last)"
+   echo "Processing ${!friendly} ($working/$dir/${!filepath}/${!filename}.mcfunction) ($count of $last)"
 
    # create directory if it doesn't exist
-   if ! [ -d $dir/${!filepath} ]; then
-      echo "Creating directory $dir/${!filepath}"
-      mkdir -p $dir/${!filepath}
+   if ! [ -d $working/$dir/${!filepath} ]; then
+      echo "Creating directory $working/$dir/${!filepath}"
+      mkdir -p $working/$dir/${!filepath}
    fi
 
    # write header
    echo "Writing header"
-   echo "# ${!friendly} Function" >$dir/${!filepath}/${!filename}.mcfunction
-   echo "# For use with the Nostalgic Food System by Engielolz" >>$dir/${!filepath}/${!filename}.mcfunction
-   echo "# Restores ${!hp}HP." >>$dir/${!filepath}/${!filename}.mcfunction
+   echo "# ${!friendly} Function" >$working/$dir/${!filepath}/${!filename}.mcfunction
+   echo "# For use with the Nostalgic Food System by Engielolz" >>$working/$dir/${!filepath}/${!filename}.mcfunction
+   echo "# Restores ${!hp}HP." >>$working/$dir/${!filepath}/${!filename}.mcfunction
 
    # count if $specialheader is defined
    if ! [ -z "${!specialheader}" ]; then countEm $count; fi
@@ -109,6 +109,11 @@ do
    if ! [ "$specialcount" = "0" ]; then writeSpecial $count 1; fi
    
    # convert to DOS format (for parity)
-   $(dirname "$0")/convert.sh $dir/${!filepath}/${!filename}.mcfunction -d -i
+   $(dirname "$0")/convert.sh $working/$dir/${!filepath}/${!filename}.mcfunction -d -i
+
+   # write foodcheck entry
+   echo "execute as @a[scores={NFS.eat.${!scoreboard}=1..}] run function nfs:$dir/${!filepath}/${!filename}">>$working/$dir/foodcheck.mcfunction
 done
+# convert foodcheck to DOS
+$(dirname "$0")/convert.sh $working/$dir/foodcheck.mcfunction -d -i
 exit 0
