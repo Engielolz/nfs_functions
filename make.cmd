@@ -15,8 +15,18 @@ xcopy ..\..\src\*.* nfs\functions /e
 copy nul nfs\functions\custom_init.mcfunction
 copy nul nfs\functions\custom_food.mcfunction
 :: ver_check
+if %reltype% == 1 goto reltype1
 if %reltype% == 0 echo tellraw @s [{"text":"Nostalgic Food System Datapack for Minecraft 1.13+\n"},{"text":"Version %nfsver%\n","hoverEvent":{"action":"show_text","value":"Click to download this version"},"clickEvent":{"action":"open_url","value":"https://github.com/Engielolz/nfs_functions/releases/tag/%tag%"}},{"text":"2018-2024 "},{"text":"Engielolz","clickEvent":{"action":"open_url","value":"https://www.github.com/Engielolz/nfs_functions"},"hoverEvent":{"action":"show_text","value":"Click to visit GitHub Repository"}}]>nfs\functions\ver_check.mcfunction
-if %reltype% == 1 echo tellraw @s [{"text":"Nostalgic Food System Datapack for Minecraft 1.13+\n"},{"text":"Version %nfsver% (Prerelease Build)\n","hoverEvent":{"action":"show_text","value":[{"text":"Exact version not available"}]}},{"text":"2018-2024 "},{"text":"Engielolz","hoverEvent":{"action":"show_text","value":[{"text":"Click to visit GitHub Repository"}]},"clickEvent":{"action":"open_url","value":"https://www.github.com/Engielolz/nfs_functions"}}]>nfs\functions\ver_check.mcfunction
+goto done
+:reltype1
+set commit=fail
+for /f "tokens=*" %%a in ('git log -1 --pretty^=%%h 2^>NUL') do set commit=%%a
+if %commit% == fail goto generic
+echo tellraw @s [{"text":"Nostalgic Food System Datapack for Minecraft 1.13+\n"},{"text":"Commit %commit% (Prerelease Build)\n","hoverEvent":{"action":"show_text","value":"Click to view commit"},"clickEvent":{"action":"open_url","value":"https://github.com/Engielolz/nfs_functions/commit/%commit%"}},{"text":"2018-2024 "},{"text":"Engielolz","clickEvent":{"action":"open_url","value":"https://www.github.com/Engielolz/nfs_functions"},"hoverEvent":{"action":"show_text","value":"Click to visit GitHub Repository"}}]>nfs\functions\ver_check.mcfunction
+goto done
+:generic
+echo tellraw @s [{"text":"Nostalgic Food System Datapack for Minecraft 1.13+\n"},{"text":"Version %nfsver% (Prerelease Build)\n","hoverEvent":{"action":"show_text","value":[{"text":"Exact version not available"}]}},{"text":"2018-2024 "},{"text":"Engielolz","hoverEvent":{"action":"show_text","value":[{"text":"Click to visit GitHub Repository"}]},"clickEvent":{"action":"open_url","value":"https://www.github.com/Engielolz/nfs_functions"}}]>nfs\functions\ver_check.mcfunction
+:done
 >>nfs\functions\ver_check.mcfunction (
 echo scoreboard players set @s NFS.Version 0
 echo scoreboard players enable @s NFS.Version
