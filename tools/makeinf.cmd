@@ -3,10 +3,9 @@ setlocal enabledelayedexpansion
 if exist "%1" set filename=%1 && goto load
 set /p filename=INF file:
 if exist "%filename%" goto load
-echo Signature=NFSTOOL>"%filename%"
-if not exist "%filename%" goto error
 set current=1
 set last=1
+set working=.
 goto newinit
 
 :load
@@ -29,7 +28,7 @@ if !f%current%vuln! == 0 echo 6. [ ] Requires plantable food exploit protection
 echo X. Delete this food
 echo.
 echo 7. Switch food
-echo 8. Change global directory
+echo 8. Change global directory (currently %working%/%dir%)
 echo 9. Write changes
 
 echo 0. Exit
@@ -107,10 +106,21 @@ set f%current%vuln=0
 goto menu
 
 :editdir
-echo Currently the directory is %dir%
-set /p dir=Enter new directory: 
+echo Edit which directory?
+echo 1. Global directory: %dir%
+echo 2. Working directory: %working%
+echo 3. Cancel
+choice /c:123
+if %errorlevel% == 3 goto menu
+if %errorlevel% == 2 goto workingdir
+set /p dir=Enter new global directory: 
 :: convert to Unix-path
 set "dir=%dir:\=/%"
+goto menu
+
+:working
+set /p working=Enter new working directory: 
+set "working=%working:\=/%"
 goto menu
 
 :delete
@@ -149,8 +159,10 @@ set current=1
 >!filename! (
 echo Signature=NFSTOOL
 echo last=!last!
+echo working=!working!
 echo dir=!dir!
 )
+if not exist !filename! goto error
 :loop
 >>!filename! (
 echo f%current%name=!f%current%name!
@@ -191,7 +203,7 @@ if %errorlevel% == 2 goto menu
 exit /b
 
 :error
-echo Failed to create the file %filename%...
+echo Failed to save the file %filename%...
 pause
 exit /b
 
