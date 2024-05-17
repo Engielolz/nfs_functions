@@ -139,6 +139,7 @@ choice /c:123
 if %errorlevel% == 2 goto delete
 if %errorlevel% == 3 goto menu
 call :listfood --move
+if not "!f%current%sp1h!" == "" echo Warning: Detected special data will not be moved. You will need to manually move it yourself in a text editor.
 echo The current food is !f%current%name! in slot %current%.
 set /p myvar=Switch with what slot? 
 if %myvar% == %current% goto menu
