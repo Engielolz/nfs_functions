@@ -52,7 +52,7 @@ exit /b 0
 
 :makepack
 REM %1 = format, set %description% to what you want
-echo {"pack": {"pack_format": %1, "description": "%description%"}}>pack.mcmeta
+echo {"pack": {"pack_format": %1, "supported_formats": [%1,44], "description": "%description%"}}>pack.mcmeta
 exit /b 0
 
 :eof

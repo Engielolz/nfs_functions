@@ -12,7 +12,7 @@ function makejson () {
    ../../tools/convert.sh $2 -d -i
 }
 function makepack () {
-   printf '{"pack": {"pack_format": %s, "description": "%s"}}\n' "$1" "Nostalgic Food System $nfsver">pack.mcmeta
+   printf '{"pack": {"pack_format": %s, "supported_formats": [%s,44], "description": "%s"}}\n' "$1" "$1" "Nostalgic Food System $nfsver">pack.mcmeta
    ../tools/convert.sh pack.mcmeta -d -i
 }
 # cleanup
