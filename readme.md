@@ -23,15 +23,17 @@ NFS currently has 4 options. You can configure options in-game with `/scoreboard
 
 Note that options were set by editing the options.mcfunction file in older (pre-Beta 1.3) versions of NFS. If you're upgrading you'll need to reapply your changes (if you set any).
 
-* Combat Snapshot setting (`combatSnapshot`)
+* Combat Snapshot setting (`combatSnapshot`)*
   * This setting is for Combat Snapshot 8c. When set, NFS will use health values that are correct for that version.
 * Remove Overeaten Cakes (`overeatenCakes`)
   * Starting in Minecraft 1.8, Cakes can be eaten 7 times instead of the previous 6. NFS by default removes Cakes with six bites to ensure that no more than 18 HP (how much Cake could restore in Beta 1.7.3) may be obtained from one Cake.
 * Vulnerable Food Cooldown (`vulnFoodCooldown`)
   * This setting enforces a 32 tick cooldown after successfully eating a food item that is plantable. This further mitigates the plantable food exploit (#7) where it is possible to spam place the crop to gain health.
-* Use /random (`useRandom`)
+* Use /random (`useRandom`)*
   * When enabled, this uses Minecraft's built-in RNG found in 23w31a.
   * Requires 23w31a (1.20.2) or higher.
+
+*: not available when using Minecraft 1.21
 
 ## Q&A I think
 
@@ -56,6 +58,10 @@ Bedrock Edition does not have the scoreboard criteria necessary for NFS to work.
 ### Why is HP gain slower in the Combat Snapshots?
 
 The Instant Health effect was changed to restore 6HP instead of 4HP in Combat Snapshot 8c. As a result, Regeneration must be used more often, causing health gain to be slower.
+
+### Does this work with the food data component?
+
+No. Foods harcoded into NFS will give the health specified by the datapack. Items given the food component are not considered by NFS, and setting eat_seconds to a value lower than default will conflict with NFS on 
 
 ## How to add a new food
 
@@ -120,5 +126,5 @@ And after you `/reload` it should now work!
 
 ## Credits
 
-* Credits to u/mingshi3_uiuc [on Reddit](http://redd.it/vv68n6) for the RNG implementation this datapack uses.
+* Credits to u/mingshi3_uiuc [on Reddit](http://redd.it/vv68n6) for the RNG implementation that the 1.13-1.20 version of this datapack uses.
   * rng_init and rng_perform are the functions that use this implementation.

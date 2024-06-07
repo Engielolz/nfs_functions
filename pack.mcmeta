@@ -1,6 +1,15 @@
 {
        "pack": {
            "pack_format": 4,
-           "description": "Nostalgic Food System 1.3"
-       }
+		   "supported_formats": [4,999],
+           "description": "Nostalgic Food System 1.3.1"
+       },
+	   "overlays": {
+	       "entries": [
+			   {
+			       "formats": [45,999],
+				   "directory": "121"
+			   }
+		   ]
+	   }
    }

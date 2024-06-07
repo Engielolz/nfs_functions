@@ -1,0 +1,10 @@
+give @s apple
+give @s bread
+give @s cake
+give @s cooked_cod
+give @s cooked_porkchop
+give @s cookie
+give @s cod
+give @s golden_apple
+give @s mushroom_stew
+give @s porkchop

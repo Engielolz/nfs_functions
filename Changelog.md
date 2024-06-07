@@ -1,9 +1,10 @@
-Version 1.3
+Version 1.3.1
 ===========
 
-* Setting options is now done in-game
-* Fixed issues with multiplayer
-* Fix the plantable food exploit (#7)
-* New option to use Minecraft's built-in RNG (1.20.2+)
-  * Enable with `scoreboard players set useRandom NFS.Options 1`
-  * Note that reloading the datapack is necessary when switching back to legacy RNG after running cleanup.
+This version is a hotfix to add support for Minecraft 1.21 as the Build System is not ready yet
+
+* Supports Minecraft 1.21. Differences in this version:
+  * Removed Combat Snapshot settings
+  * Removed legacy RNG. /random is now always used
+  * Food entries from 1.14 onwards merged into the main foodcheck file
+* The version of NFS that runs on older versions of Minecraft also reports as 1.3.1, but does not have the above changes
