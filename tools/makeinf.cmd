@@ -142,6 +142,7 @@ call :listfood --move
 if not "!f%current%sp1h!" == "" echo Warning: Detected special data will not be moved. You will need to manually move it yourself in a text editor.
 echo The current food is !f%current%name! in slot %current%.
 set /p myvar=Switch with what slot? 
+if "%myvar%" == "" goto menu
 if %myvar% == %current% goto menu
 REM Backup the current food into move
 set nextup=%current%

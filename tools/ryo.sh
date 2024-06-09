@@ -20,7 +20,7 @@ if ! [ $Signature = "NFSTOOL" ]; then
 fi
 # if not defined $last then exit
 if [ -z ${last+x} ]; then echo "last is not set"; exit 1; fi
-# there is no further error checking but WinRyo doesn't have it either
+# there is no further error checking but nfstool doesn't have it either
 
 # create Base directory
 if ! [ -d $working/$dir ]; then
@@ -70,6 +70,10 @@ function countEm() {
 seqcmd="seq 1"
 if [ "$(uname -s)" == "Darwin" ]; then seqcmd=jot; fi
 
+# Delete inits before continuing
+find build/ -name "foodinit.mcfunction" -type f -delete
+find build/ -name "foodcheck.mcfunction" -type f -delete
+
 # This is the main loop
 for i in $($seqcmd $last)
 do
@@ -77,6 +81,7 @@ do
    filepath=$(echo f"$i"fp)
    filename=$(echo f"$i"fn)
    scoreboard=$(echo f"$i"sc)
+   criteria=$(echo f"$i"cc)
    hp=$(echo f"$i"hp)
    vulnerable=$(echo f"$i"vuln)
    specialheader=$(echo f"$i"sp1h)
@@ -112,8 +117,12 @@ do
    $(dirname "$0")/convert.sh $working/$dir/${!filepath}/${!filename}.mcfunction -d -i
 
    # write foodcheck entry
-   echo "execute as @a[scores={NFS.eat.${!scoreboard}=1..}] run function nfs:$dir/${!filepath}/${!filename}">>$working/$dir/foodcheck.mcfunction
+   echo "execute as @a[scores={NFS.eat.${!scoreboard}=1..}] run function nfs:$dir/${!filepath}/${!filename}">>$working/$dir/${!filepath}/foodcheck.mcfunction
+   
+   # write init entry
+   echo "scoreboard objectives add NFS.eat.${!scoreboard} ${!criteria}">>$working/$dir/${!filepath}/foodinit.mcfunction
 done
-# convert foodcheck to DOS
-$(dirname "$0")/convert.sh $working/$dir/foodcheck.mcfunction -d -i
+# convert to DOS
+find build/ -name "foodinit.mcfunction" -type f -exec $(dirname "$0")/convert.sh {} -d -i \;
+find build/ -name "foodcheck.mcfunction" -type f -exec $(dirname "$0")/convert.sh {} -d -i \;
 exit 0

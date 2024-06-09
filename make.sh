@@ -15,6 +15,16 @@ function makepack () {
    printf '{"pack": {"pack_format": %s, "supported_formats": [%s,44], "description": "%s"}}\n' "$1" "$1" "Nostalgic Food System $nfsver">pack.mcmeta
    ../tools/convert.sh pack.mcmeta -d -i
 }
+
+function vomit () {
+   echo "function nfs:food/default/$1">>$2.mcfunction
+   echo "function nfs:food/beta18/$1">>$2.mcfunction
+   echo "function nfs:food/modern/$1">>$2.mcfunction
+   echo "function nfs:food/114/$1">>$2.mcfunction
+   echo "function nfs:food/115/$1">>$2.mcfunction
+   echo "function nfs:food/117/$1">>$2.mcfunction
+}
+
 # cleanup
 rm -rf ./build 2>/dev/null
 # folder structure
@@ -22,7 +32,7 @@ mkdir -p build/data/minecraft/tags/functions
 cd build/data
 mkdir -p nfs/functions
 # copy data
-cp -r ../../src/* nfs/functions
+cp -v -r ../../src/* nfs/functions
 touch nfs/functions/custom_init.mcfunction
 touch nfs/functions/custom_food.mcfunction
 # ver_check
@@ -50,3 +60,9 @@ makepack 4
 # call ryo and make the functions
 cd ..
 ./tools/ryo.sh food.inf
+
+# Make main foodcheck.mcfunction
+pushd ./build/data/nfs/functions/food
+vomit foodcheck ./foodcheck
+vomit foodinit ../init
+popd
